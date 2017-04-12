@@ -1,0 +1,24 @@
+{
+  "name": "tccountdown",
+  "version": "0.0.2",
+  "description": "countdown Component",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "countdown"
+  ],
+  "author": "lqd6031",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iceshu/tc-react-countdown.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iceshu/tc-react-countdown/issues"
+  },
+  "homepage": "https://github.com/iceshu/tc-react-countdown#readme",
+  "dependencies": {},
+  "devDependencies": {}
+}
