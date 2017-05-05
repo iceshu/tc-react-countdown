@@ -1,8 +1,8 @@
 /**
- * Created by luqidong on 2017/4/12.
+ * Created by luqidong on 2017/3/21.
  */
 import React, {PropTypes, Component} from 'react';
-import {Countdown as Counttimer} from '../lib/timer';
+import {Countdown as Counttimer} from '../../utils/timer';
 export  default class Countdown extends Component {
 
     constructor(props) {
@@ -11,31 +11,29 @@ export  default class Countdown extends Component {
         this.state = {
             elem: <span> </span>
         };
-        const {time, fn, step, level}=this.props;
-        this.countdown = new Counttimer(time, (data, isend)=> {
-            this.setState({
-                elem: fn(data, isend)
-            });
-        }, level, step);
+
     }
 
     componentDidMount() {
+        const {time, fn, step, level}=this.props;
+        this._isMounted && (this.countdown = new Counttimer(time, (data, isend)=> {
+            this.setState({
+                elem: fn(data, isend)
+            });
+        }, level, step));
         this._isMounted && this.countdown.start();
     }
 
 
     componentWillUnmount() {
         this._isMounted = false;
+        this.countdown.stop()
     }
 
     componentWillReceiveProps(nextProps) {
-        // console.log(nextProps);
-        // const {endTime} = nextProps;
-        // // if parent component update endTime, Countdown will change restTime too
-        // if(formattimes(endTime) !== [0, 0, 0, 0] && this._isMounted) {
-        //     const restTime = calculateTime(formattimes(endTime).getTime() - new Date().getTime());
-        //     this.setState({restTime})
-        // }
+        const {time}=nextProps;
+        this.countdown.reset(time);
+        this.countdown.start();
     }
 
     render() {
